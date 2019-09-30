@@ -1,0 +1,249 @@
+#Yelcamp
+
+install express, ejs
+
+
+-add landing page
+-add campground page that lists all campgrounds
+
+Each Campground has:
+-name
+-image
+photosforclass.com/search/camping
+
+array of objects
+[
+    {name: '', image: 'link'};
+    {name: '', image: 'link'}
+]
+
+1st Steps
+npm init
+npm install (express ejs) --save
+---
+#Layout and Basic Styling
+-create our header and footer partials
+-add in bootstrap
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+header/footer in partials folder inside views
+<% include partials/footer %>
+---
+#Creating New Campgrounds
+-set up new campground POST route
+-Add in body-parser
+-setup route to show form
+-add basic unstyled form
+
+convention REST
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({extended: true}));
+
+separate page and route for our form to add 
+
+if i need to push object into an array, the array must be outside the routes
+
+res.redirect('/campgrounds'); (redirect default is to the GET req route)
+
+https://pixabay.com/get/e83db40e28fd033ed1584d05fb1d4e97e07ee3d21cac104496f0c77aa7e9bdb1_340.jpg
+---
+Style Campground Page
+-add better header/title
+    -use jumbotron
+-display on grid
+-fix the grid:
+ style="display:flex; flex-wrap: wrap;"
+ 
+ form-
+ *style- width:30%; margin:auto
+---
+Intro to DB
+ SQL vs NoSQL
+
+DB
+-have interface to interact w/ data, we can write code to interact w/ it
+
+db.dogs.find()
+db.dogs.delete({age:14})
+
+SQL(relational) vs NoSQL(non-relational)
+
+NoSQL
+-data can be nested
+BSON- binary object notation, binary JSON
+looks like a js object, bunch of key value pairs, don't need ids and other
+tables to show relationship, can all be in one "object item"
+-more flexible
+---
+MongoDB
+-NoSQL db
+others- postgress, mySQL
+
+mongo is very popular w/ node
+MEAN stack, mongo, express, angular, and node
+MEN stack mongo, express, node
+
+really good tools to use in Express app
+install in c9
+
+install mon
+---
+Mongo Commands
+./mongod- from data directory to run mongo db server
+mongo- opens mongo console. mongo shell, test and practice
+help- list of basic mongo features
+show dbs
+use
+insert
+find
+update
+remove
+
+*make sure to close mongo server when I'm done
+no longer work?
+show-collections
+system.indexes
+
+make a sep db for every app we make, so its self contained
+use dbname
+
+use dbname (switches to or creates)
+db.dogs.find() (shows everything in the collection)
+
+add data w/ collections
+insert
+db.dogs.insert({blah blah object stuff})
+db.dogs.update({find}, {$set: {update}}), 
+db.dogs.remove({find})
+db.collection.remove({}, {justOne: true})
+db.collection.drop() - delete entire collection
+
+CRUD- create, read, update, delete/destroy
+run mongo server
+---
+Mongoose
+-we write the code in the express app
+-we do that w/ mongoose, a package that helps us interact w/ mongo
+
+-installand require mongoose
+ npm install mongoose
+ var mongoose = require("mongoose);
+ //connect to a database
+ mongoose.connect("mongodb://localhost/cat_app")
+ 
+ 
+{ "_id" : ObjectId("5b54d6b509cfb60b14300f35")
+mongoose.connect('mongodb://localhost:27017/cat_app', { useNewUrlParser: true });
+
+./mongod
+https://webdevbctwo-laurenmb.c9users.io/
+-set up our schema
+-compile into a model
+*ctrl shift / - block comment
+---
+v2
+left off @10:39, need to set up form to add cg to db
+https://pixabay.com/get/ea36b70928f21c22d2524518b7444795ea76e5d004b0144294f4c678a5e4b5_340.jpg
+
+var campgrounds = [
+        {name: "Salmon Creek", image: "https://farm9.staticflickr.com/8442/7962474612_bf2baf67c0.jpg"},
+        
+        {name: "Mountain Goat's Rest", image: "https://farm7.staticflickr.com/6057/6234565071_4d20668bbd.jpg"},
+        {name: "Salmon Creek", image: "https://farm9.staticflickr.com/8442/7962474612_bf2baf67c0.jpg"},
+        {name: "Granite Hill", image: "https://farm1.staticflickr.com/60/215827008_6489cd30c3.jpg"},
+        
+];
+---
+Restful routes
+-app.get/campgrounds(main, displays all campgrounds)- index
+-app.post/campgrounds (get data from form, redirect to main)- create
+-app.get/campgrounds/new (form to add new campground)- new
+
+7 Restful Routes
+*new must be listed before show
+
+Name       URL           VERB       DESC
+================================================================
+Index     /dogs          GET       (display a list of dogs)R
+New       /dogs/new      GET       (displays form to make a new dog)
+Create    /dogs          POST      (form submits to create, add new dog to DB, redirects to index)
+Show      /dogs/:id      GET       (shows info about one dog)R
+Edit      /dogs/:id/edit GET       (show edit form for one dog)
+Update    /dogs/:id      PUT       (Update one dog, then redirect somewhere)
+Destroy   /dogs/:id      DELETE    (Delete one dog, then redirect somewhere)
+
+Rest- representational state transfer, mapping between HTTP routes and CRUD, 
+pattern to our routes using CRUD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
